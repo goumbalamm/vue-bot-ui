@@ -1,8 +1,9 @@
 .qkb-bot-ui {
   position: fixed;
   z-index: $bot-zindex;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 0;
+  right: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-size: $font-size-root;

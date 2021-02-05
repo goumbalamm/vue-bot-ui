@@ -1,8 +1,10 @@
 <template lang="pug">
+
 .qkb-board-content(ref="boardContent")
   .qkb-board-content__bubbles(
     ref="boardBubbles"
   )
+
     message-bubble(
       v-for="(item, index) in mainData",
       :key="index",

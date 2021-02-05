@@ -1,4 +1,16 @@
 <template lang="pug">
+<div>
+    .qkb-board-page(v-if="!botActive")
+      BoardContent(
+        :bot-typing="botTyping",
+        :main-data="messages"
+      )
+      BoardAction(
+        :input-disable="inputDisable",
+        :input-placeholder="optionsMain.inputPlaceholder",
+        :input-disable-placeholder="optionsMain.inputDisablePlaceholder",
+        @msg-send="sendMessage"
+      )
 .qkb-bot-ui(
   :class="uiClasses"
 )
@@ -6,7 +18,7 @@
     .qkb-board(v-if="botActive")
       BoardHeader(
         :bot-title="optionsMain.botTitle",
-        @close-bot="botToggle"
+        v-bind:close-bot="botToggle"
       )
       BoardContent(
         :bot-typing="botTyping",
@@ -18,7 +30,7 @@
         :input-disable-placeholder="optionsMain.inputDisablePlaceholder",
         @msg-send="sendMessage"
       )
-  .qkb-bot-bubble
+
     button.qkb-bubble-btn(
       @click="botToggle"
     )
@@ -35,6 +47,7 @@
   AppStyle(:options="optionsMain")
   .qkb-preload-image
     .qkb-msg-avatar__img(v-if="optionsMain.botAvatarImg")
+</div>
 </template>
 <script>
 import EventBus from '../helpers/event-bus'
@@ -44,7 +57,6 @@ import BoardAction from './Board/Action'
 import AppStyle from './AppStyle'
 import BubbleIcon from '../assets/icons/bubble.svg'
 import CloseIcon from '../assets/icons/close.svg'
-
 export default {
   name: 'VueBotUI',
 
@@ -91,7 +103,7 @@ export default {
     return {
       botActive: false,
       defaultOptions: {
-        botTitle: 'Chatbot',
+        botTitle: 'My bot',
         colorScheme: '#1b53d0',
         textColor: '#fff',
         bubbleBtnSize: 56,
@@ -128,6 +140,7 @@ export default {
   },
 
   created () {
+    window.addEventListener('scroll', this.handleScroll)
     if (this.isOpen) {
       if (this.openDelay) {
         setTimeout(this.botOpen, this.openDelay)
@@ -136,7 +149,11 @@ export default {
       }
     }
   },
-
+  mounted () {
+    if (this.checkVisible(document.getElementsByClassName('qkb-board-action')[0])) {
+      document.getElementsByClassName('qkb-bubble-btn')[0].style.display = 'none'
+    }
+  },
   beforeDestroy () {
     EventBus.$off('select-button-option')
   },
@@ -147,14 +164,27 @@ export default {
         this.botToggle()
       }
     },
-
+    handleScroll (event) {
+      if (this.checkVisible(document.getElementsByClassName('qkb-board-action')[0])) {
+        document.getElementsByClassName('qkb-bubble-btn')[0].style.display = 'none'
+      } else {
+        document.getElementsByClassName('qkb-bubble-btn')[0].style.display = 'block'
+      }
+    },
+    checkVisible (elm) {
+      var rect = elm.getBoundingClientRect()
+      var viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight)
+      return !(rect.bottom < 0 || rect.top - viewHeight >= 0)
+    },
     botToggle () {
       this.botActive = !this.botActive
 
       if (this.botActive) {
+        document.body.style.overflow = 'hidden'
         EventBus.$on('select-button-option', this.selectOption)
         this.$emit('init')
       } else {
+        document.body.style.overflow = 'scroll'
         EventBus.$off('select-button-option')
         this.$emit('destroy')
       }
@@ -171,4 +201,6 @@ export default {
 }
 </script>
 
-<style src="../assets/scss/_app.scss" lang="scss"></style>
+<style src="../assets/scss/_app.scss" lang="scss">
+
+</style>

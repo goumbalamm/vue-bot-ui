@@ -1,10 +1,7 @@
 <template lang="pug">
-#app
-  img(
-    alt="Vue Bot UI",
-    src="./assets/logo.png"
-  )
-  VueBotUI(
+  <div>
+    #app
+    VueBotUI(
     :options="botOptions",
     :messages="messageData",
     :bot-typing="botTyping",
@@ -13,6 +10,10 @@
     @init="botStart",
     @msg-send="msgSend",
   )
+    <div style="width: 100%; height:800px;background-color: rgb(226, 225, 225);"></div>
+    <div style="width: 100%; height:800px;background-color: rgb(248, 250, 228);"></div>
+    <div style="width: 100%; height:800px;background-color: rgb(250, 228, 246);"></div>
+  </div>
 </template>
 <script>
 import BotIcon from './assets/icons/bot.png'
@@ -27,7 +28,32 @@ export default {
 
   data () {
     return {
-      messageData: [],
+      messageData: [
+        {
+          'agent': 'bot',
+          'type': 'text',
+          'text': 'Hello. Have a nice day!',
+          'disableInput': false
+        },
+        {
+          'agent': 'bot',
+          'type': 'button',
+          'text': 'How can we help you today?',
+          'options': [
+            {
+              'text': 'Search Suport Articles',
+              'value': 'search',
+              'action': 'postback'
+            },
+            {
+              'text': 'Submit Support Ticket',
+              'value': 'submit_ticket',
+              'action': 'postback'
+            }
+          ],
+          'disableInput': true
+        }
+      ],
       botTyping: false,
       inputDisable: false,
       botOptions: {
@@ -102,6 +128,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
