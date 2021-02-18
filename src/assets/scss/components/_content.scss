@@ -1,6 +1,8 @@
 .qkb-board-content {
   flex-grow: 1;
-  overflow: hidden;
+  overflow: auto;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .qkb-board-content__bubbles {
@@ -55,7 +57,7 @@
 }
 
 .qkb-msg-bubble-component {
-  font-size: .875rem;
+  font-size: 1.2rem;
 
   &:hover {
     & ~ .qkb-msg-bubble__time {
@@ -86,7 +88,13 @@
 .qkb-msg-bubble-component__text {
   position: relative;
   padding: .75rem 1rem;
-  border-radius: 6px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  .qkb-msg-bubble--bot & {
+    border-radius: 15px 15px 15px 0;
+  }
+  .qkb-msg-bubble--user & {
+    border-radius: 15px 15px 0 15px;
+  }
 }
 
 .qkb-msg-bubble-component__options-wrapper {
@@ -106,10 +114,10 @@
   padding: .25rem 1rem;
   cursor: pointer;
   outline: 0;
-  border: 1px solid transparent;
-  border-radius: 13px;
+  border: 2px solid transparent;
+  border-radius: 10px 10px 0 10px;
   color: inherit;
-  font-size: 0.875rem;
+  font-size: 1.3rem;
   font-family: inherit;
   text-decoration: none;
   background-color: transparent;

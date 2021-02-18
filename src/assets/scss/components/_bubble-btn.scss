@@ -10,7 +10,7 @@
   border: 0;
   box-shadow: none;
   border-radius: 50%;
-  color: $bubble-btn-color;
+  color: white;
   fill: $bubble-btn-color;
   cursor: pointer;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, .15);
@@ -29,10 +29,12 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 27px;
+  width: 60px;
   height: auto;
   margin: -11px 0 0 -13px;
   line-height: 1em;
+  top: 20%;
+  left: 20%;
 
   &.qkb-bubble-btn-icon--close {
     width: 15px;

@@ -16,7 +16,7 @@
   </div>
 </template>
 <script>
-import BotIcon from './assets/icons/bot.png'
+import BotIcon from './assets/icons/bot-icon.png'
 import { VueBotUI } from './vue-bot-ui'
 import { messageService } from './helpers/message'
 
@@ -57,12 +57,21 @@ export default {
       botTyping: false,
       inputDisable: false,
       botOptions: {
+        botTitle: 'My bot',
+        colorScheme: '#1b53d0',
+        textColor: '#fff',
+        bubbleBtnSize: 56,
+        animation: true,
+        boardContentBg: '#fafafa',
+        botAvatarSize: 37,
         botAvatarImg: BotIcon,
-        boardContentBg: '#f4f4f4',
         msgBubbleBgBot: '#fff',
-        inputPlaceholder: 'Type hereeee...',
+        msgBubbleColorBot: '#444',
+        msgBubbleBgUser: '#007ABD',
+        msgBubbleColorUser: '#E3F5FF',
+        inputPlaceholder: 'Type a message here',
         inputDisableBg: '#fff',
-        inputDisablePlaceholder: 'Hit the buttons above to respond'
+        inputDisablePlaceholder: null
       }
     }
   },

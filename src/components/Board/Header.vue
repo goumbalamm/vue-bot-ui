@@ -18,12 +18,12 @@ export default {
 <style scoped>
 .close-button{
   margin-left: 15px;
-  color: #5B5BCE;
+  color: #007ABD;
   float: right;
   background-color: white;
   border-radius: 10px;
-  color: #5B5BCE;
-  border: #5B5BCE solid 2px;
+  color: #007ABD;
+  border: #007ABD solid 2px;
   text-decoration:none;
   font-size: 20px;
   margin-bottom:10px;
@@ -32,12 +32,14 @@ export default {
   cursor: pointer;
 }
 .header {
-  background-color: white;
-  margin-top: 10px;
+  background-color: #fafafa;
+  border-bottom: #eee solid 1px;
+  padding-top:10px;
+  text-align: center;
 }
 .title{
-  margin-left: 15px; color: #5B5BCE;
-  font-size: 26px
+  margin-left: 15px; color: #007ADD;
+  font-size: 26px;
 }
 
 </style>

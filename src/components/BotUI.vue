@@ -55,7 +55,7 @@ import BoardHeader from './Board/Header'
 import BoardContent from './Board/Content'
 import BoardAction from './Board/Action'
 import AppStyle from './AppStyle'
-import BubbleIcon from '../assets/icons/bubble.svg'
+import BubbleIcon from '../assets/icons/bot-icon.svg'
 import CloseIcon from '../assets/icons/close.svg'
 export default {
   name: 'VueBotUI',
@@ -115,7 +115,7 @@ export default {
         msgBubbleColorBot: '#000',
         msgBubbleBgUser: '#4356e0',
         msgBubbleColorUser: '#fff',
-        inputPlaceholder: 'Message',
+        inputPlaceholder: 'Type a message here',
         inputDisableBg: '#fff',
         inputDisablePlaceholder: null
       }
@@ -150,7 +150,7 @@ export default {
     }
   },
   mounted () {
-    if (this.checkVisible(document.getElementsByClassName('qkb-board-action')[0])) {
+    if (this.checkVisible(document.getElementsByClassName('qkb-board-content')[0])) {
       document.getElementsByClassName('qkb-bubble-btn')[0].style.display = 'none'
     }
   },
@@ -165,7 +165,7 @@ export default {
       }
     },
     handleScroll (event) {
-      if (this.checkVisible(document.getElementsByClassName('qkb-board-action')[0])) {
+      if (this.checkVisible(document.getElementsByClassName('qkb-board-content')[0])) {
         document.getElementsByClassName('qkb-bubble-btn')[0].style.display = 'none'
       } else {
         document.getElementsByClassName('qkb-bubble-btn')[0].style.display = 'block'
